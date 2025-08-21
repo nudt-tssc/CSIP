@@ -1,0 +1,4 @@
+=== GEMM Benchmark: M=512, N=512, K=512 ===
+CPU Naive:      1088.20 ms,     0.25 GFLOPS
+CPU Opt:        29.25 ms,     9.18 GFLOPS
+Correctness - CPU OPT vs CPU Naive: PASS

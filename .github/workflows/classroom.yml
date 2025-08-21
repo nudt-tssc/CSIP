@@ -1,0 +1,42 @@
+name: Autograding Tests
+on: 
+  push:
+    branches:
+      - main 
+env:
+  TIMEOUT: 1000 # 超时时间
+  SCRIPT_REPO: https://github.com/oscontent25/EvaluationScript # 脚本仓库
+  
+jobs:  
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    env:
+      qemu-version: 9.2.1
+    steps:
+      - name: Download EvaluationScript
+        run: |
+            git clone ${{ env.SCRIPT_REPO }} .github/classroom
+
+      - name: cpu-test
+        uses: oscontent25/os-autograding@master
+        id: cpu-test
+        with:
+          outputfile: ./result/cpu.txt
+          scriptPath: .github/classroom/cpu
+      - name: gpu-test
+        uses: oscontent25/os-autograding@master
+        id: gpu-test
+        with:
+          outputfile: ./result/gpu.txt
+          scriptPath: .github/classroom/gpu
+          
+      - name: Autograding Reporter
+        uses: oscontent25/autograding-grading-reporter@v1
+        env:
+          GLIBCBASIC-TEST_RESULTS: "${{steps.cpu-test.outputs.result}}"
+          GLIBCLIBCTEST-TEST_RESULTS: "${{steps.gpu-test.outputs.result}}"
+        with:
+          runners: 
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+        
