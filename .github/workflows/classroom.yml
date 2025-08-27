@@ -16,7 +16,8 @@ jobs:
       - name: Download EvaluationScript
         run: |
             git clone ${{ env.SCRIPT_REPO }} .github/classroom
-
+      - name: Build Evironment
+        run: sudo apt-get install -y openssl
       - name: cpu-test
         uses: nudt-tssc/hpc-autograding@master
         id: cpu-test
