@@ -5,7 +5,7 @@ on:
       - main 
 env:
   TIMEOUT: 1000 # 超时时间
-  SCRIPT_REPO: https://github.com/oscontent25/EvaluationScript # 脚本仓库
+  SCRIPT_REPO: https://github.com/nudt-tssc/Evaluation # 脚本仓库
   
 jobs:  
   run-autograding-tests:
@@ -18,13 +18,13 @@ jobs:
             git clone ${{ env.SCRIPT_REPO }} .github/classroom
 
       - name: cpu-test
-        uses: oscontent25/os-autograding@master
+        uses: nudt-tssc/hpc-autograding@master
         id: cpu-test
         with:
           outputfile: ./result/cpu.txt
           scriptPath: .github/classroom/cpu
       - name: gpu-test
-        uses: oscontent25/os-autograding@master
+        uses: nudt-tssc/hpc-autograding@master
         id: gpu-test
         with:
           outputfile: ./result/gpu.txt
@@ -33,10 +33,10 @@ jobs:
       - name: Autograding Reporter
         uses: oscontent25/autograding-grading-reporter@v1
         env:
-          GLIBCBASIC-TEST_RESULTS: "${{steps.cpu-test.outputs.result}}"
-          GLIBCLIBCTEST-TEST_RESULTS: "${{steps.gpu-test.outputs.result}}"
+          CPU-TEST_RESULTS: "${{steps.cpu-test.outputs.result}}"
+          GPU-TEST_RESULTS: "${{steps.gpu-test.outputs.result}}"
         with:
-          runners: 
+          runners: cpu-test,gpu-test
           token: ${{ secrets.GITHUB_TOKEN }}
 
         
