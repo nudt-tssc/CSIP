@@ -35,7 +35,7 @@ jobs:
           scriptPath: .github/classroom/gpu
           
       - name: Autograding Reporter
-        uses: oscontent25/autograding-grading-reporter@v1
+        uses: nudt-tssc/autograding-grading-reporter@v1
         env:
           CPU-TEST_RESULTS: "${{steps.cpu-test.outputs.result}}"
           GPU-TEST_RESULTS: "${{steps.gpu-test.outputs.result}}"

@@ -14,10 +14,12 @@
 我们提供测试环境给您，供您分析瓶颈及代码测试。
 由于硬件资源有限，评测机（单节点）暂时不支持并发测试，如果参加者过多，将会考虑扩增节点。
 
+评测机编译参数只采用o1。
+
 ## CPU
 测试环境编译：
 g++ ./CPU_benchmark/cpu_benchmark.cpp cpu.cpp -I CPU_benchmark
-
+您如果使用了openmp，测试时自行链接即可
 提交评测机：
 ./client username passwd
 随后会要求您输入评测文件，您输入cpu.cpp即可，也就是说您关于cpu版本所有的代码改动应该在cpu.cpp中，并且不应该修改文件名。

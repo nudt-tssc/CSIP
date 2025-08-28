@@ -225,8 +225,8 @@ void benchmark_gemm(int M, int N, int K, int num_iterations = 10) {
     bool cpu_cublas_match = check_correctness(h_C_cpu, h_C_cublas, M * N);
     bool cpu_gpu_opt_match = check_correctness(h_C_cpu, h_C_gpu_opt, M * N);
     
-    std::cout << "Correctness - CPU vs GPU Naive: " << (cpu_gpu_match ? "PASS" : "FAIL") << std::endl;
-    std::cout << "Correctness - CPU vs cuBLAS:    " << (cpu_cublas_match ? "PASS" : "FAIL") << std::endl;
+    // std::cout << "Correctness - CPU vs GPU Naive: " << (cpu_gpu_match ? "PASS" : "FAIL") << std::endl;
+    // std::cout << "Correctness - CPU vs cuBLAS:    " << (cpu_cublas_match ? "PASS" : "FAIL") << std::endl;
     std::cout << "Correctness - CPU vs gpu_opt:    " << (cpu_gpu_opt_match ? "PASS" : "FAIL") << std::endl;
     
     // Cleanup
