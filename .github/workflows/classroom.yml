@@ -17,7 +17,7 @@ jobs:
         run: |
             git clone ${{ env.SCRIPT_REPO }} .github/classroom
       - name: Build Evironment
-        run: sudo apt-get install -y openssl; pwd;ls;cd ..; ls;pwd;
+        run: sudo apt-get install -y openssl; pwd;ls -al;cd ..; ls -al;pwd;
              
       - name: cpu-test
         uses: nudt-tssc/hpc-autograding@master
