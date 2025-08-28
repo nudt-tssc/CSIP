@@ -13,6 +13,8 @@ jobs:
     env:
       qemu-version: 9.2.1
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: Download EvaluationScript
         run: |
             git clone ${{ env.SCRIPT_REPO }} .github/classroom
